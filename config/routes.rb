@@ -10,6 +10,19 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    resources :users, only: [:show] do
+    resource :follows, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+    resource :bookmarks, only: [:create, :destroy]
+    resources :comments, only: [:create]
+   member do
+    get :followings
+    get :followers
+    get :favorites
+    get :bookmarks
+  end
+end
+resources :comments, only: [:destroy]
 
   end
 
