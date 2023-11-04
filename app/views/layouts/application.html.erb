@@ -28,7 +28,7 @@
                <%= link_to "マイページ", user_path %>
                </li>
                <li class="nav-item">
-               <%= link_to "レシピ一覧", user_recipes_path %>
+               <%= link_to "レシピ一覧", user_recipes_path(user_id: current_user.id) %>
                </li>
                <li class="nav-item">
                <%= link_to "ブックマーク一覧", bookmarks_user_path %>
@@ -65,7 +65,7 @@
              <%= link_to "about", homes_about_path %>
              </li>
              <li class="nav-item">
-             <%= link_to "レシピ一覧", user_recipes_path %>
+             <%= link_to "レシピを見る", root_path %>
              </li>
              </ul>
            <% end %>
@@ -77,9 +77,5 @@
    </nav>
   </header>
   <%= yield %>
-  </body>
-</html>
-
-    <%= yield %>
   </body>
 </html>

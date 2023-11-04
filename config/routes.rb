@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+devise_for :users,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 
  namespace :admin do
     root to: 'homes#top'
@@ -12,32 +20,22 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
-    resources :users do
-    resource :follows, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
-    resource :bookmarks, only: [:create, :destroy]
-    resources :comments, only: [:create]
-    resources :recipes
+   resources :users do
+      resource :follows, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
+      resources :comments, only: [:create]
+      resources :recipes
    member do
-    get :followings
-    get :followers
-    get :favorites
-    get :bookmarks
+      get :followings
+      get :followers
+      get :favorites
+      get :bookmarks
+    end
   end
-end
-resources :comments, only: [:destroy]
+ resources :comments, only: [:destroy]
 
   end
-
-devise_for :users,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
