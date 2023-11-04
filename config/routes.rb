@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
 
+
  namespace :admin do
     root to: 'homes#top'
-    resources :comment
-    resources :user
-    resources :recipe
+    resources :comments
+    resources :users
+    resources :recipes
     resources :homes
   end
 
   scope module: :public do
     root to: 'homes#top'
-    resources :users, only: [:show] do
+    get 'homes/about' => 'homes#about'
+    resources :users do
     resource :follows, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     resource :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create]
+    resources :recipes
    member do
     get :followings
     get :followers
