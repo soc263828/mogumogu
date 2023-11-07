@@ -1,1 +1,12 @@
-hello
+<h1>mogumogu</h1>
+
+<%= link_to "レシピ一覧へ", user_recipes_path %>
+
+<% @recipe.limit(5).each do |item| %>
+  <td>
+    <%= link_to user_recipe_path(recipe.id) do %>
+     <%= image_tag recipe.get_item_image(100, 100) %>
+    <% end %>
+    <%= recipe.title %>
+  </td>
+ <% end %>
