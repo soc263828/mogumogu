@@ -4,8 +4,18 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name, autofocus: true, autocomplete: "off"%>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telephone_number %><br />
+    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number"%>
   </div>
 
   <div class="field">

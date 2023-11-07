@@ -37,14 +37,17 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
+  private
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+   def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :user_name, :telephone_number)
+   end
 
+    def account_update_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :user_name, :telephone_number)
+    end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
