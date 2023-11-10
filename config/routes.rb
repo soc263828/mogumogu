@@ -13,7 +13,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to: 'homes#top'
     resources :comments
     resources :users
-    resources :recipes
+    get 'recipes/index' => 'recipes#index',as: 'recipes'
+    get 'recipes/new' => 'recipes#new',as: 'recipes_new'
+    post 'recipes/create' => 'recipes#create',as: 'recipes_create'
+    resources :recipes, only: [:show, :update, :destroy]
     resources :homes
   end
 
