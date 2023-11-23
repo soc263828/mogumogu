@@ -23,12 +23,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
+     get 'recipes/index' => 'recipes#index',as: 'recipes'
+     get 'recipes/new' => 'recipes#new',as: 'recipes_new'
+     post 'recipes/create' => 'recipes#create',as: 'recipes_create'
+     resources :recipes, only: [:show, :update, :destroy]
    resources :users do
       resource :follows, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
       resource :bookmarks, only: [:create, :destroy]
       resources :comments, only: [:create]
-      resources :recipes
    member do
       get :followings
       get :followers
